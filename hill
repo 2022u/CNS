@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+char pt[100];
+int key[100][100],n,k=0,i,j,g=0,l,ci,index[100],mul[100][100],ptm[100][100];
+char ct[100];
+char a[100]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+printf("\nenter the plain text:");
+scanf("%s",pt);
+printf("\nenter the key :\n");
+for(i=0;i<2;i++)
+{
+ for(j=0;j<2;j++)
+ {
+  scanf("%d",&key[i][j]);
+ }
+}
+for(i=0;i<strlen(pt);i++)
+{
+ for(j=0;j<strlen(a);j++)
+ {
+  if(pt[i]==a[j])
+  {
+   index[i]=j;
+  }
+ }
+}
+for(i=0;i<2;i++)
+{
+ for(j=0;j<2;j++)
+ {
+  ptm[j][i]=index[k];
+  k++;
+ }
+}
+for(i=0;i<2;i++)
+{
+ for(j=0;j<2;j++)
+ {
+  mul[i][j]=0;    
+  for(l=0;l<2;l++)    
+  {    
+   mul[i][j]+=key[i][l]*ptm[l][j];    
+  }    
+ }    
+}
+for(i=0;i<2;i++)
+{
+ for(j=0;j<2;j++)
+ {
+  mul[i][j]=mul[i][j]%26;
+ }
+}  
+
+for(i=0;i<2;i++)
+{
+ for(j=0;j<2;j++)
+ {
+  ci=mul[j][i];
+  ct[g]=a[ci];
+  g++;
+ }
+}
+puts(ct);
+}
