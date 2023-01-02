@@ -1,0 +1,41 @@
+#include<stdio.h>
+long long int powMod(int a, int b, int n) {
+    long long x=1,y=a;
+    while(b>0)  {
+        if(b%2==1)
+            x=(x*y)%n;
+        y=(y*y)%n;
+        b/=2;
+    }
+    return x%n;
+}
+long long int calculateKey(int YA, int XA, int q)  {
+    return powMod(YA,XA,q);
+}
+void main()
+{
+    int q,alpha,XA,XB,YA,b,k1,k2,YB;
+    printf("Enter the value of q and alpha: ");
+    scanf("%d %d",&q,&alpha);
+
+    printf("Enter the value of XA: ");
+    scanf("%d",&XA);
+    YA=powMod(alpha,XA,q);
+
+    printf("Enter the value of XB: ");
+    scanf("%d",&XB);
+    YB=powMod(alpha,XB,q);
+    printf("A computes YA: %d \n",YA);
+    printf("B computes YB: %d \n",YB);
+    k1=powMod(YB,XA,q);
+    k2=powMod(YA,XB,q);
+    printf("K1: %d \n",k1);
+    printf("K2: %d \n",k2);
+    if(k1==k2)
+        printf("The keys exchanged successfully \n");
+    else
+        printf("The keys exchanged are not same \n");
+}
+// Enter the value of q and alpha: 7 3
+// Enter the value of XA: 9
+// Enter the value of XB: 2
