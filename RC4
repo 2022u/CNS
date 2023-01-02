@@ -1,0 +1,93 @@
+#include<stdio.h>
+void main()
+{
+int msg,key, s[256],flag=0,i1,j2,t,k,ke[256],a[10],te[256],i,j,temp1,n,k1[20],k2[20],m1[20],m2[20],v1,v,j1,l,l1,z,z1,ans[20];
+for(i=0;i<256;i++)
+s[i]=i;
+printf("enter the key length ");
+scanf("%d",&n);
+printf("enter the key");
+for(i=0;i<n;i++)
+scanf("%d",&ke[i]);
+for(i=0;i<256;i++)
+te[i]=ke[i % n];
+printf("t[i]=");
+for(i=0;i<10;i++)
+printf("%d ",te[i]);
+printf("\n");
+for(i=0,j=0;i<=255;i++)
+{
+i=(i+1)%256;
+j=(j+s[i]+te[i])%256;
+temp1=s[i];
+s[i]=s[j];
+s[j]=temp1;
+}
+
+
+i=0;
+j=0;
+while(flag<256)
+{
+i=(i+1)%256;
+j=(j+s[i])%256;
+temp1=s[i];
+s[i]=s[j];
+s[j]=temp1;
+flag++;
+}
+for(i=0;i<30;i++)
+printf(" %d ",s[i]);
+t=(s[i]+s[j])%256;
+printf("t=%d",t);
+key=s[t];
+printf("key =%d",key);
+printf("enter the plain text");
+scanf("%d",&msg);
+//printf("\n");
+
+v=0;j=0;
+
+while(v<8)
+{
+k1[j++]=key % 2;
+key=key/2;
+v++;
+}
+l=0;
+for(z=j-1;z>=0;z--)
+{
+k2[l++]=k1[z];
+}
+for(i=0;i<8;i++)
+printf("%d",k2[i]);
+printf("\n");
+
+printf("message is =%d \n",msg);
+v1=0;j1=0;
+while(v1<8)
+{
+m1[j1++]=msg%2;
+msg=msg/2;
+v1++;
+}
+l1=0;
+for(z1=j1-1;z1>=0;z1--)
+{
+m2[l1++]=m1[z1];
+}
+for(i=0;i<8;i++)
+printf("%d",m2[i]);
+printf("\n");
+for(i=0;i<=7;i++)
+{
+ans[i]=m2[i]^k2[i];
+}
+printf("cipher text=");
+for(i=0;i<=7;i++)
+printf("%d",ans[i]);
+}
+/*
+enter the key length 4
+enter the key1 2 3 4
+*/
