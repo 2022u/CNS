@@ -1,5 +1,9 @@
 #include<stdio.h> 
-#include<string.h> #include<stdlib.h> int mes[3][1],c[3][3],en[3][1],a[3][3]; void encryption(); void getkeymsg(); 
+#include<string.h>
+#include<stdlib.h> 
+int mes[3][1],c[3][3],en[3][1],a[3][3]; 
+void encryption();
+void getkeymsg(); 
 void main() 
 { 
     getkeymsg();     encryption(); 
